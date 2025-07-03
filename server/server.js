@@ -5,7 +5,9 @@ import dbconnection from "./db.js";
 const app = express();
 
 const corsOptions = {
-  origin: "https://super-duper-capybara-9vxwrwqrj4p2p79g-5173.app.github.dev/", // Replace with your frontend URL
+  origin: "http://localhost:5173", // Remove trailing slash
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
   optionsSuccessStatus: 200
 };

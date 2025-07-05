@@ -1,32 +1,27 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import products from "../products";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductById } from "../actions/productAction";
 
 const ProductDesc = () => {
-  const [products, setProducts] = useState([])
-    useEffect(() => {
-      axios.get('http://localhost:3000/api/products/getAllProducts').then(res => {
-        // If you see HTML here, your backend route is not returning JSON.
-        // Double logs can happen in React Strict Mode (development only).
-        // console.log(res.data)
-        setProducts(res.data)
-      }).catch(err => {
-        console.log(err)
-      })
-    }, [])
-
-
-  const { id: productId } = useParams(); // use 'id' instead of '_id'
+  const [products, setProducts] = useState([]) // empty array to remove errors temproraily
+  const { id: productId } = useParams(); // use 'id' instead of '_id' because it is the variable name in the url
   const product = products.find((p) => p._id === productId);
   const [quantity, setQuantity] = useState(50);
   const quantityOptions = [50, 100, 150, 200, 250, 300, 400, 500];
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductById(productId));
+  }, [])
 
   if (!product) {
     return (
       <div className="px-10 mt-10">
         <div className="text-2xl text-gray-600">
-          {products.length === 0 ? "Loading..." : "Product not found."}
+          {products.length === 0 ? "Something went wrong..." : "Product not found."}
         </div>
       </div>
     );

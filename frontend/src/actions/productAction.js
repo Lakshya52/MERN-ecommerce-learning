@@ -17,3 +17,18 @@ export const getAllProducts = () => dispatch => {
 
 
 }
+
+
+export const getProductById = (productId) => dispatch => {
+
+    dispatch({ type: 'GET_PRODUCTBYID_REQUEST' })
+    axios.post('http://localhost:3000/api/products/getProductById' , {productId}).then(res => {
+       
+        dispatch({ type: 'GET_PRODUCTBYID_SUCCESS', payload: res.data })
+    }).catch(err => {
+        console.log(err)
+        dispatch({ type: 'GET_PRODUCTBYID_FAILED', payload: err })
+    })
+
+
+}

@@ -13,8 +13,10 @@ const corsOptions = {
 };
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use("/api/products", productRoute);
+
 
 app.get("/", (req, res) => {
   res.send("Hello World");

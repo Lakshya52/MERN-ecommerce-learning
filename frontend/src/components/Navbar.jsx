@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 
 const Navbar = () => {
-  const cartState = useSelector((state) => state.addToCartReducer);
+  const cartState = useSelector((state) => state.cartReducer);
   const { cartItems } = cartState;
   return (
     <>

@@ -1,5 +1,5 @@
 import { getAllProductsReducer, getProductByIdReducer } from "./reducers/productReducer";
-import { addToCartReducer } from "./reducers/cartReducer";
+import { cartReducer } from "./reducers/cartReducer";
 
 
 import { combineReducers } from "redux";
@@ -11,7 +11,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 const finalReducer = combineReducers({
   getAllProductsReducer: getAllProductsReducer,
   getProductByIdReducer: getProductByIdReducer,
-  addToCartReducer: addToCartReducer
+  cartReducer: cartReducer
 })
 let cartItems = [];
 try {
@@ -25,7 +25,7 @@ try {
 }
 
 const initialState = {
-  addToCartReducer: { cartItems: cartItems }
+  cartReducer: { cartItems: cartItems }
 }
 
 const store = createStore( finalReducer, initialState, composeWithDevTools(

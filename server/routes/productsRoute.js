@@ -22,6 +22,7 @@ router.post("/getProductById", async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: "Product not found" });
         }
+        // Just return the product as is, do not set default quantityOptions
         res.send(product);
     } catch (err) {
         return res.status(500).json({ message: "Error finding the product", error: err.message });

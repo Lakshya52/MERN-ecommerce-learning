@@ -12,8 +12,16 @@ const ProductDesc = () => {
   // const product = products.find((p) => p._id === productId);
   const getProductByIdState = useSelector((state => state.getProductByIdReducer));
   const { product, error, loading } = getProductByIdState;
-  const [quantity, setQuantity] = useState(50);
-  const quantityOptions = [50, 100, 150, 200, 250, 300, 400, 500];
+  // Use quantityOptions from product, fallback to default if not loaded or empty
+  const quantityOptions = (product?.quantityOptions && product.quantityOptions.length > 0)
+    ? product.quantityOptions
+    : [99, 98, 97, 96, 95];
+  const [quantity, setQuantity] = useState(quantityOptions[0]);
+
+  // Update quantity when quantityOptions changes (e.g., when product loads)
+  useEffect(() => {
+    setQuantity(quantityOptions[0]);
+  }, [quantityOptions]);
 
   const dispatch = useDispatch();
   useEffect(() => {

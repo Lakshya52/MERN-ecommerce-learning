@@ -6,12 +6,14 @@ import { combineReducers } from "redux";
 import { createStore, applyMiddleware } from "redux";
 import { thunk } from "redux-thunk";
 import { composeWithDevTools } from '@redux-devtools/extension';
+import { registerNewUserReducer } from "./reducers/userReducer";
 
 
 const finalReducer = combineReducers({
   getAllProductsReducer: getAllProductsReducer,
   getProductByIdReducer: getProductByIdReducer,
-  cartReducer: cartReducer
+  cartReducer: cartReducer,
+  registerNewUserReducer: registerNewUserReducer
 })
 let cartItems = [];
 try {

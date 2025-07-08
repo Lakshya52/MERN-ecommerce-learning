@@ -6,6 +6,9 @@ import Navbar from "./components/Navbar";
 import ProductDesc from "./pages/ProductDesc";
 import Cart from "./pages/cart";
 
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+
 
 const App = () => {
   return (
@@ -15,7 +18,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/product/:id" element={<ProductDesc />} />
-          <Route path="/cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart />} />
+
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
         </Routes>
       </BrowserRouter>
     </>

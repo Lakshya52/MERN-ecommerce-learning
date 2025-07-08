@@ -69,7 +69,7 @@ const Cart = () => {
                                         })}
                                     </select>
                                 </td>
-                                <td className="px-4 py-2 border border-gray-300 text-center">{((item.price / 1.18).toFixed(2)) * item.quantity}</td>
+                                <td className="px-4 py-2 border border-gray-300 text-center">{(Number(item.price / 1.18).toFixed(2)) * item.quantity}</td>
                                 <td className="px-4 py-2 border border-gray-300 text-center hover:underline hover:text-red-500 cursor-pointer" onClick={() => deleteProduct(item)}>Delete</td>
                             </tr>
                         ))}
@@ -78,13 +78,14 @@ const Cart = () => {
                     </tbody>
                 </table>
                 <hr className='mt-7 border-gray-300' />
-                <h2 className="text-xl  mt-4">Subtotal : ₹{subtotal}</h2>
-                <h2 className="text-xl  mt-4">Gst (18%) : ₹{subtotal * 0.18}</h2>
-                <h2 className="text-xl  mt-4">Grand total : ₹{(subtotal * 0.18) + subtotal}</h2>
+                <h2 className="text-xl  mt-4">Subtotal : ₹{(subtotal).toFixed(2)}</h2>
+                <h2 className="text-xl  mt-4">Gst (18%) : ₹{(subtotal * 0.18).toFixed(2)}</h2>
+                <h2 className="text-xl  mt-4">Grand total : ₹{((subtotal * 0.18) + subtotal).toFixed(2)}</h2>
                 <hr className='mt-5 border-gray-300' />
 
 
-                <button className='bg-black text-white p-3  rounded-xl mt-5 w-full cursor-pointer hover:bg-gray-500 hover:text-black'>PAY ₹ {(subtotal * 0.18) + subtotal} NOW</button>
+                <button className='bg-black text-white p-3  rounded-xl mt-5 w-full cursor-pointer hover:bg-gray-500 hover:text-black'>PAY ₹ {((subtotal * 0.18) + subtotal).toFixed(2)} NOW
+</button>
 
 
 

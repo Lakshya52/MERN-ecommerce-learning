@@ -19,14 +19,19 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             }
 
         case 'UPDATE_CART_ITEM_QUANTITY':
+            const updatedCart = state.cartItems.map(item =>
+                item._id === action.payload._id
+                    ? { ...item, quantity: action.payload.quantity }
+                    : item
+            );
+
+            // ✅ Update localStorage
+            localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+
             return {
                 ...state,
-                cartItems: state.cartItems.map(item =>
-                    item._id === action.payload._id
-                        ? { ...item, quantity: action.payload.quantity }
-                        : item
-                )
-            }
+                cartItems: updatedCart
+            };
 
         // case 'DELETE_FROM_CART':
         //     return {
@@ -35,10 +40,15 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         //     }
 
         case 'DELETE_FROM_CART':
+            const filteredCart = state.cartItems.filter(item => item._id !== action.payload);
+
+            // 🔁 Update localStorage
+            localStorage.setItem('cartItems', JSON.stringify(filteredCart));
+
             return {
                 ...state,
-                cartItems: state.cartItems.filter(item => item._id !== action.payload)
-            };
+                cartItems: filteredCart
+            }
 
 
         default:

@@ -7,6 +7,7 @@ import { loginUser } from '../actions/userActions'
 
 
 const Login = () => {
+    const navigate = useNavigate();
 
   
       const [email, setEmail] = useState('')
@@ -29,7 +30,7 @@ const Login = () => {
 
           useEffect(()=>{
             if(localStorage.getItem('currentUser')){
-                window.location.href = '/'
+                navigate('/');
                 
             }
           },[])

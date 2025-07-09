@@ -36,8 +36,11 @@ export const loginUser = (user) => async (dispatch) => {
       }
     );
 
+    const { name, email, _id, token } = res.data;
+    const safeUserData = { name, email, _id };
+
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: res.data });
-    localStorage.setItem('currentUser' , JSON.stringify(res.data))
+    localStorage.setItem('currentUser', JSON.stringify(safeUserData))
     window.location.href = '/'
     console.log(res);
   } catch (err) {
@@ -45,3 +48,11 @@ export const loginUser = (user) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const logoutUser = () => (dispatch) => {
+    localStorage.removeItem('currentUser')
+    localStorage.removeItem('cartItems')
+window.location.href = "/"; 
+    dispatch({type:'USER_LOGOUT' })
+
+}

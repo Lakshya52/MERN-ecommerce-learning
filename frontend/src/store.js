@@ -6,14 +6,15 @@ import { combineReducers } from "redux";
 import { createStore, applyMiddleware } from "redux";
 import { thunk } from "redux-thunk";
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { registerNewUserReducer } from "./reducers/userReducer";
+import { loginUserReducer, registerNewUserReducer } from "./reducers/userReducer";
 
 
 const finalReducer = combineReducers({
   getAllProductsReducer: getAllProductsReducer,
   getProductByIdReducer: getProductByIdReducer,
   cartReducer: cartReducer,
-  registerNewUserReducer: registerNewUserReducer
+  registerNewUserReducer: registerNewUserReducer,
+  loginUserReducer : loginUserReducer
 })
 let cartItems = [];
 try {
@@ -26,9 +27,13 @@ try {
   cartItems = [];
 }
 
+let currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null
+
 const initialState = {
-  cartReducer: { cartItems: cartItems }
+  cartReducer: { cartItems: cartItems },
+  loginUserReducer : {currentUser: currentUser}
 }
+
 
 const store = createStore( finalReducer, initialState, composeWithDevTools(
     applyMiddleware(thunk)

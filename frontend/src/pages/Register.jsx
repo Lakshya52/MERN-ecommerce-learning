@@ -26,9 +26,11 @@ const Register = () => {
 
         if (password == cpass) {
             dispatch(registerNewUser(user))
+            
         }
         else {
             alert("password not matched")
+            
         }
 
     }

@@ -20,5 +20,21 @@ router.post("/register", async (req, res) => {
     res.status(500).send("Something went wrong registering the user");
   }
 });
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password} = req.body;
+    const user = await User.findOne({ email, password});
 
-export default router;
+    if (user) {
+      res.status(200).json({ message: "Login success", user });
+    } else {
+      res.status(400).json({ message: "Invalid Credentials" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+
+
+export default router; 

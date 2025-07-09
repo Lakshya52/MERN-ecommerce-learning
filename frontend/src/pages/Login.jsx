@@ -1,5 +1,9 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {use, useEffect, useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import { loginUserReducer } from '../reducers/userReducer'
+import { loginUser } from '../actions/userActions'
+
 
 
 const Login = () => {
@@ -7,12 +11,34 @@ const Login = () => {
   
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
+
+      const dispatch = useDispatch()
+      
+          const login = (e) => {
+      
+              e.preventDefault(); // 
+      
+              const user = {
+                  email :email,
+                  password : password
+              }
+              dispatch(loginUser(user))
+      
+      
+          }
+
+          useEffect(()=>{
+            if(localStorage.getItem('currentUser')){
+                window.location.href = '/'
+                
+            }
+          },[])
     
   return (
      <div className='flex items-center justify-center h-[80vh]'>
     
     
-                <form className=" p-10  w-[500px] ">
+                <form className=" p-10  w-[500px] " onSubmit={login}>
                     <h1 className='w-full text-3xl text-center mb-5'>Login</h1>
                    
     
@@ -20,7 +46,7 @@ const Login = () => {
                     <label className='mb-7' htmlFor="email">Email</label>
                     <br />
                     <input type="email" id='email' className='border outline-none w-full rounded  p-2'
-                        value={email} onchange={(e) => { setEmail(e.target.value) }} placeholder='Enter your email' />
+                        value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder='Enter your email' />
                     <br />
     
                     {/* pass */}

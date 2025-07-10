@@ -1,4 +1,4 @@
-import { getAllProductsReducer, getProductByIdReducer } from "./reducers/productReducer";
+import { filterProductsReducer, getAllProductsReducer, getProductByIdReducer } from "./reducers/productReducer";
 import { cartReducer } from "./reducers/cartReducer";
 
 
@@ -14,7 +14,8 @@ const finalReducer = combineReducers({
   getProductByIdReducer: getProductByIdReducer,
   cartReducer: cartReducer,
   registerNewUserReducer: registerNewUserReducer,
-  loginUserReducer : loginUserReducer
+  loginUserReducer : loginUserReducer,
+  filterProductsReducer :filterProductsReducer,
 })
 let cartItems = [];
 try {

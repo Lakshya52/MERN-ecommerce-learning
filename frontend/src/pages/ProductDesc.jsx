@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../actions/productAction";
 import { addToCart } from "../actions/cartActions"; // <-- Import the Redux action
+import Spinner from "../components/Spinner";
 
 const ProductDesc = () => {
   // const [products, setProducts] = useState([]) // empty array to remove errors temproraily
@@ -49,7 +50,9 @@ const ProductDesc = () => {
 
 
       {loading ? (
-        <h1>Loading...</h1>
+      
+          <Spinner/>
+        
       ) : error ? (
         <h1>Something went wrong</h1>
       ) : (

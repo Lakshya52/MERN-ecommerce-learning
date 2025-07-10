@@ -42,7 +42,7 @@ const ProductDesc = () => {
   // Rename the local handler to avoid conflict
   function handleAddToCart() {
     dispatch(addToCart(product, quantity));
-    alert(`Added ${quantity} cards to cart`);
+    // alert(`Added ${quantity} cards to cart`);
   }
 
   return (

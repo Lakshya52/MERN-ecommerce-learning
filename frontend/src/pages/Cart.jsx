@@ -69,7 +69,7 @@ const Cart = () => {
                                         })}
                                     </select>
                                 </td>
-                                <td className="px-4 py-2 border border-gray-300 text-center">{(Number(item.price / 1.18).toFixed(2)) * item.quantity}</td>
+                                <td className="px-4 py-2 border border-gray-300 text-center">{((Number(item.price / 1.18)) * item.quantity).toFixed(2)}</td>
                                 <td className="px-4 py-2 border border-gray-300 text-center hover:underline hover:text-red-500 cursor-pointer" onClick={() => deleteProduct(item)}>Delete</td>
                             </tr>
                         ))}

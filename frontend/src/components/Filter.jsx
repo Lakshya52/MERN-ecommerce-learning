@@ -43,10 +43,11 @@ const Filter = () => {
                 className="w-[20%] outline-none border p-2 rounded-lg cursor-pointer"
             >
                 <option value="all">All</option>
-                <option value="vcards">Visiting Cards</option>
+                <option value="bcards">Birthday Cards</option>
                 <option value="envelopes">Envelopes</option>
                 <option value="tshirt">T-shirts</option>
                 <option value="mpads">Mouse pads</option>
+                <option value="mugs">Ceramic Mugs</option>
             </select>
 
             <button
